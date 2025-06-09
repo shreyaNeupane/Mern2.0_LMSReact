@@ -8,26 +8,32 @@ const Home = () => {
     const [books , setBooks] = useState([])
     const fetchBooks = async() => {
         const response = await axios.get("http://localhost:3000/book");
-        console.log(response)
+      //  if api hit the data stored in backend setBook stores books in api
+        if(response.status === 200){
+          // .data is  varaiable in backend where book is stored
+        setBooks(response.data.data)
+       }
     }
     // to fetch books whwn page mounts
     useEffect(()=>{
         fetchBooks()
     },[])
+    console.log(books)
   return (
     <>
-      <div className="bg-red-400">
+      
         <Navbar />
-        http://localhost:3000/book
         <div className="flex flex-wrap justify-evenly">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+         {
+          books.length > 0 && books.map((book)=>{
+            return(
+              // book is passes as prop to card component to show actual data of book in forntend
+              <Card book={book}/>
+            )
+          })
+         }
         </div>
-      </div>
+      
     </>
   );
 }
