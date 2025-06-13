@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import EditBook from './../editBook/EditBook';
+import { backendUrl } from './../config';
 
 const SingleBook = () => {
 
@@ -21,7 +22,7 @@ const SingleBook = () => {
   },[])
 
   const DeleteBook = async () =>{
-    const response = await axios.delete(`http://localhost:3000/book/${id}`)
+    const response = await axios.delete(`${backendUrl}/book/${id}`)
     if(response.status === 200){
        navigate("/");
     } else {

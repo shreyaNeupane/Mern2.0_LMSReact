@@ -1,0 +1,1 @@
+export const backendUrl = "https://mern2-0-lms-react.vercel.app/";
